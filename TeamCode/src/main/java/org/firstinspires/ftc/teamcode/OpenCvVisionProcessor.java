@@ -1,10 +1,22 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
 import org.firstinspires.ftc.vision.VisionProcessor;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OpenCvVisionProcessor extends VisionProcessor
 {   private static final int DEF_LINE_COLOR = Color.GREEN;
@@ -26,7 +38,7 @@ public class OpenCvVisionProcessor extends VisionProcessor
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setColor(textColor.setColor(DEF_TEXT_COLOR));
+        textPaint.setColor(textPaint.setColor(DEF_TEXT_COLOR));        ;
         textPaint.setTextSize(DEF_TEXT_SIZE);
     }
 
