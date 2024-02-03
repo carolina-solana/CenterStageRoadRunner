@@ -19,8 +19,7 @@ import org.opencv.imgproc.Moments;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenCvVisionProcessor extends VisionProcessor
-{
+public class OpenCvVisionProcessor implements VisionProcessor {
     private static final int DEF_LINE_COLOR = Color.GREEN;
     private static final float DEF_LINE_WIDTH = 4.0f;
     private static final int DEF_TEXT_COLOR = Color.RED;
@@ -148,11 +147,11 @@ public class OpenCvVisionProcessor extends VisionProcessor
 
     private Mat preprocessFrame(Mat frame) {
         Mat hsvFrame = new Mat();
-        Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
+        Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_RGB2HSV);
 
 //change HSV value for different team prop
-        Scalar lowHSV = new Scalar(1, 98, 34); // lower bound HSV for blue tested by blue cone 223 25 31
-        Scalar highHSV = new Scalar(30, 255, 255);
+//        Scalar lowHSV = new Scalar(1, 98, 34); // lower bound HSV for blue tested by blue cone 223 25 31
+//        Scalar highHSV = new Scalar(30, 255, 255);
 
         // Scalar lowHSV = new Scalar(1, 60, 58); // lower bound HSV for red tested by red team prop
         //  Scalar highHSV = new Scalar(10, 255, 255);
