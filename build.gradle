@@ -11,6 +11,10 @@ buildscript {
         agp_version2 = agp_version1
         agp_version3 = '8.1.4'
         agp_version4 = '8.1.4'
+        agp_version5 = agp_version5
+        agp_version6 =
+
+        agp_version7 =
     }
     repositories {
         mavenCentral()
