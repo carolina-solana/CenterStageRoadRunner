@@ -107,7 +107,8 @@ public class AutonomousCopyALan extends LinearOpMode {
     double liftIdealPos;
     double liftIdealPower;
     int result;
-
+    private final WebcamName webcam1, webcam2;
+    private OpenCvCamera openCvCamera = null;
     double cX = 0;
     double cY = 0;
     double width = 0;
@@ -307,7 +308,8 @@ Using the specs from the motor, you would need to find the encoder counts per re
         controlHubCam.openCameraDevice();
         controlHubCam.startStreaming(CAMERA_WIDTH, CAMERA_HEIGHT, OpenCvCameraRotation.UPRIGHT);
     }
-/*
+
+    /*
     public void  findteamPropLocationsbyDistanceSensors(){
         double leftReading = LeftSensor.getDistance(DistanceUnit.INCH);
         double rightReading = RightSensor.getDistance(DistanceUnit.INCH);
