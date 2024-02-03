@@ -136,6 +136,9 @@ public class AutonomousCopyALan extends LinearOpMode {
     private static int DESIRED_TAG_ID = -1;
     private VisionPortal visionPortal;
     private AprilTagProcessor aprilTag;
+
+    private OpenCvVisionProcessor openCv;
+//    private OpenCvVisionProcessor OpenCvVision ;
     private AprilTagDetection desiredTag = null;
     final double DESIRED_DISTANCE = 6.0; //  this is how close the camera should get to the target (inches)
 
@@ -170,7 +173,7 @@ public class AutonomousCopyALan extends LinearOpMode {
         RBMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LBMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        initOpenCV();
+//        initOpenCV();
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
         FtcDashboard.getInstance().startCameraStream(controlHubCam, 30);
@@ -181,7 +184,7 @@ public class AutonomousCopyALan extends LinearOpMode {
         double  turn            = 0;        // Desired turning power/speed (-1 to +1)
 
         // Initialize the Apriltag Detection process
-        initAprilTag();
+        initVisionPortal() ;
 
 
         distanceInInch=24;//number in unit of inch
@@ -299,15 +302,21 @@ Using the specs from the motor, you would need to find the encoder counts per re
 
     }
     public void initOpenCV() {
+
+//        int OpenCvVisionProcessor=new OpenCvVisionProcessor;
         // Create an instance of the camera
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+/*        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         // Use OpenCvCameraFactory class from FTC SDK to create camera instance
         controlHubCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         controlHubCam.setPipeline(new YellowBlobDetectionPipeline());
         controlHubCam.openCameraDevice();
         controlHubCam.startStreaming(CAMERA_WIDTH, CAMERA_HEIGHT, OpenCvCameraRotation.UPRIGHT);
+*/
+
+
     }
+
 
     /*
     public void  findteamPropLocationsbyDistanceSensors(){
@@ -400,8 +409,11 @@ Using the specs from the motor, you would need to find the encoder counts per re
             return input;
         }
         private Mat preprocessFrame(Mat frame) {
-            Mat hsvFrame = new Mat();
-            Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
+           Mat hsvFrame = new Mat();
+//            Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
+
+            Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_RGB2HSV);
+
 
 //change HSV value for different team prop
             Scalar lowHSV = new Scalar(1, 98, 34); // lower bound HSV for blue tested by blue cone 223 25 31
@@ -899,9 +911,10 @@ Returns the absolute orientation of the sensor as a set three angles with indica
         LBMotor.setPower(0);
     }
 
-    private void initAprilTag() {
+    private void initVisionPortal() {
 
         aprilTag = new AprilTagProcessor.Builder().build();
+        openCv= new OpenCvVisionProcessor();
 
         // Adjust Image Decimation to trade-off detection-range for detection-rate.
         // eg: Some typical detection data using a Logitech C920 WebCam
@@ -915,14 +928,16 @@ Returns the absolute orientation of the sensor as a set three angles with indica
         // Create the vision portal by using a builder.
         if (USE_WEBCAM) {
         visionPortal = new VisionPortal.Builder()
-                .setCamera(hardwareMap.get(WebcamName.class, "Webcam 2"))
+                .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
                 .addProcessor(aprilTag)
+                .addProcessor(openCv)
                 .build();
                 setManualExposure(6, 250);  // Use low exposure time to reduce motion blur
         } else {
             visionPortal = new VisionPortal.Builder()
                     .setCamera(BuiltinCameraDirection.BACK)
                     .addProcessor(aprilTag)
+                    .addProcessor(openCv)
                     .build();
         }
     }
