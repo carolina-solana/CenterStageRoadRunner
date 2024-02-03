@@ -28,7 +28,8 @@ public class OpenCvVisionProcessor extends VisionProcessor{
     private Scalar highHSV;
     private final Paint linePaint;
     private final Paint textPaint;
-   public OpenCvVisionProcessor(Scalar lowHSV, Scalar highHSV)
+    String name;
+    public OpenCvVisionProcessor(String name, Scalar lowHSV, Scalar highHSV)
     {
         this.lowHSV = lowHSV;
         this.highHSV = highHSV;
