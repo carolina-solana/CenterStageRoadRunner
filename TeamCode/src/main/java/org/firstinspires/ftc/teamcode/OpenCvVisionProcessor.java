@@ -24,12 +24,12 @@ public class OpenCvVisionProcessor extends VisionProcessor
     private static final float DEF_LINE_WIDTH = 4.0f;
     private static final int DEF_TEXT_COLOR = Color.RED;
     private static final float DEF_TEXT_SIZE = 20.0f;
-
+    private Scalar lowHSV;
+    private Scalar highHSV;
     private final Paint linePaint;
     private final Paint textPaint;
-
-    public OpenCvVisionProcessor()
-    {
+    public OpenCvVisionProcessor(Scalar lowHSV, Scalar highHSV)
+      {
         linePaint = new Paint();
         linePaint.setAntiAlias(true);
         linePaint.setStrokeCap(Paint.Cap.ROUND);
