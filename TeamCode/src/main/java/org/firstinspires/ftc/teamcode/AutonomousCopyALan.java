@@ -107,7 +107,7 @@ public class AutonomousCopyALan extends LinearOpMode {
     double liftIdealPos;
     double liftIdealPower;
     int result;
-    private final WebcamName webcam1, webcam2;
+    //private final WebcamName webcam1, webcam2;
     private OpenCvCamera openCvCamera = null;
     double cX = 0;
     double cY = 0;
@@ -137,8 +137,8 @@ public class AutonomousCopyALan extends LinearOpMode {
     private VisionPortal visionPortal;
     private AprilTagProcessor aprilTag;
 
-    private OpenCvVisionProcessor openCv;
-//    private OpenCvVisionProcessor OpenCvVision ;
+    private OpenCvVisionProcessor redTeamPropOpenCv;
+    private OpenCvVisionProcessor blueTeamPropOpenCv;
     private AprilTagDetection desiredTag = null;
     final double DESIRED_DISTANCE = 6.0; //  this is how close the camera should get to the target (inches)
 
@@ -914,8 +914,8 @@ Returns the absolute orientation of the sensor as a set three angles with indica
     private void initVisionPortal() {
 
         aprilTag = new AprilTagProcessor.Builder().build();
-        openCv= new OpenCvVisionProcessor();
-
+        redTeamPropOpenCv= new OpenCvVisionProcessor("Red", new Scalar(1, 98, 34), new Scalar(30, 255, 255) );
+        blueTeamPropOpenCv= new OpenCvVisionProcessor("Blue", new Scalar(1, 98, 34), new Scalar(30, 255, 255) );
         // Adjust Image Decimation to trade-off detection-range for detection-rate.
         // eg: Some typical detection data using a Logitech C920 WebCam
         // Decimation = 1 ..  Detect 2" Tag from 10 feet away at 10 Frames per second
@@ -930,14 +930,16 @@ Returns the absolute orientation of the sensor as a set three angles with indica
         visionPortal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
                 .addProcessor(aprilTag)
-                .addProcessor(openCv)
+                .addProcessor(redTeamPropOpenCv)
+                .addProcessor(blueTeamPropOpenCv)
                 .build();
                 setManualExposure(6, 250);  // Use low exposure time to reduce motion blur
         } else {
             visionPortal = new VisionPortal.Builder()
                     .setCamera(BuiltinCameraDirection.BACK)
                     .addProcessor(aprilTag)
-                    .addProcessor(openCv)
+                    .addProcessor(redTeamPropOpenCv)
+                    .addProcessor(blueTeamPropOpenCv)
                     .build();
         }
     }

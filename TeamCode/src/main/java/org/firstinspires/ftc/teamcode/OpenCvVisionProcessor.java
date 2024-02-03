@@ -19,7 +19,8 @@ import org.opencv.imgproc.Moments;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenCvVisionProcessor extends VisionProcessor{
+public class OpenCvVisionProcessor extends VisionProcessor
+{
     private static final int DEF_LINE_COLOR = Color.GREEN;
     private static final float DEF_LINE_WIDTH = 4.0f;
     private static final int DEF_TEXT_COLOR = Color.RED;
@@ -28,22 +29,23 @@ public class OpenCvVisionProcessor extends VisionProcessor{
     private Scalar highHSV;
     private final Paint linePaint;
     private final Paint textPaint;
-    String name;
+    private String name;
     public OpenCvVisionProcessor(String name, Scalar lowHSV, Scalar highHSV)
     {
+        this.name = name;
         this.lowHSV = lowHSV;
         this.highHSV = highHSV;
         linePaint = new Paint();
-        linePaint = new Paint();
+//
         linePaint.setAntiAlias(true);
         linePaint.setStrokeCap(Paint.Cap.ROUND);
-        linePaint.setColor(linePaint.setColor(DEF_LINE_COLOR));
+        linePaint.setColor(DEF_LINE_COLOR);
         linePaint.setStrokeWidth(DEF_LINE_WIDTH);
 
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setColor(textPaint.setColor(DEF_TEXT_COLOR));        ;
+        textPaint.setColor(DEF_TEXT_COLOR);
         textPaint.setTextSize(DEF_TEXT_SIZE);
     }
 
@@ -140,7 +142,7 @@ public class OpenCvVisionProcessor extends VisionProcessor{
             canvas.drawLine(right, top, right, bottom, linePaint);
             canvas.drawLine(right, bottom, left, bottom, linePaint);
             canvas.drawLine(left, bottom, left, top, linePaint);
-            canvas.drawText(colorBlobPipeline.toString(), left, bottom, textPaint);
+            canvas.drawText(name, left, bottom, textPaint);
         }
     }   //onDrawFrame
 
