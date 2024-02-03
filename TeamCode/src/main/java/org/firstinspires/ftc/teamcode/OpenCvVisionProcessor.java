@@ -14,6 +14,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Moments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,12 +59,12 @@ public class OpenCvVisionProcessor extends VisionProcessor
     /**
      * This method is called to process an image frame.
      *
-     * @param frame specifies the source image to be processed.
+     * @param input specifies the source image to be processed.
      * @param captureTimeNanos specifies the capture frame timestamp.
      * @return array of detected objects.
      */
     @Override
-    public Object processFrame(Mat frame, long captureTimeNanos)
+    public Object processFrame(Mat input, long captureTimeNanos)
     {
         // Preprocess the frame to detect yellow regions
         Mat yellowMask = preprocessFrame(input);
@@ -73,7 +74,7 @@ public class OpenCvVisionProcessor extends VisionProcessor
         Imgproc.findContours(yellowMask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
         // Find the largest yellow contour (blob)
         MatOfPoint largestContour = findLargestContour(contours);
-        if (largestContour != null) {
+/*       if (largestContour != null) {
             // Draw a red outline around the largest detected object
 //            Imgproc.drawContours(input, contours, contours.indexOf(largestContour), new Scalar(255, 0, 0), 2);
             // Calculate the width of the bounding box
@@ -93,6 +94,7 @@ public class OpenCvVisionProcessor extends VisionProcessor
 //            Imgproc.putText(input, label, new Point(cX + 10, cY), Imgproc.FONT_HERSHEY_COMPLEX, 0.5, new Scalar(0, 255, 0), 2);
 //            Imgproc.circle(input, new Point(cX, cY), 5, new Scalar(0, 255, 0), -1);
         }
+*/
         return largestContour;
     }   //processFrame
 
