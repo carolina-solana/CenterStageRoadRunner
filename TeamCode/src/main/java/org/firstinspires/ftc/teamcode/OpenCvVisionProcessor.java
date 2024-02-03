@@ -1,91 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.util.RobotLog;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.core.Size;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.imgproc.Moments;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvPipeline;
-import java.util.ArrayList;
-import java.util.List;
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.ElapsedTime;
+import android.graphics.Color;
+import android.graphics.Paint;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.opencv.core.*;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.imgproc.Moments;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvPipeline;
-
-import java.util.ArrayList;
-import java.util.List;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.vision.VisionProcessor;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-import org.firstinspires.ftc.vision.tfod.TfodProcessor;
-import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-//import TrcCommonLib.trclib.TrcDbgTrace;
-//import TrcCommonLib.trclib.TrcOpenCvColorBlobPipeline;
-//import TrcCommonLib.trclib.TrcOpenCvDetector;
-//import TrcCommonLib.trclib.TrcPose2D;
-//import TrcCommonLib.trclib.TrcVisionTargetInfo;
-//import TrcFtcLib.ftclib.FtcEocvColorBlobProcessor;
-//import TrcFtcLib.ftclib.FtcOpMode;
-//import TrcFtcLib.ftclib.FtcRawEocvColorBlobPipeline;
-//import TrcFtcLib.ftclib.FtcRawEocvVision;
-//import TrcFtcLib.ftclib.FtcVision;
-//import TrcFtcLib.ftclib.FtcVisionAprilTag;
-//import TrcFtcLib.ftclib.FtcVisionEocvColorBlob;
-//import TrcFtcLib.ftclib.FtcVisionTensorFlow;
-//import teamcode.FtcAuto;
-//import teamcode.Robot;
-//import teamcode.RobotParams;
-//import teamcode.subsystems.BlinkinLEDs;
 public class OpenCvVisionProcessor extends VisionProcessor
-{
+{   private static final int DEF_LINE_COLOR = Color.GREEN;
+    private static final float DEF_LINE_WIDTH = 4.0f;
+    private static final int DEF_TEXT_COLOR = Color.RED;
+    private static final float DEF_TEXT_SIZE = 20.0f;
+
     private final Paint linePaint;
     private final Paint textPaint;
 
@@ -94,14 +20,14 @@ public class OpenCvVisionProcessor extends VisionProcessor
         linePaint = new Paint();
         linePaint.setAntiAlias(true);
         linePaint.setStrokeCap(Paint.Cap.ROUND);
-        linePaint.setColor(lineColor != null? lineColor: DEF_LINE_COLOR);
-        linePaint.setStrokeWidth(lineWidth != null? lineWidth: DEF_LINE_WIDTH);
+        linePaint.setColor(linePaint.setColor(DEF_LINE_COLOR));
+        linePaint.setStrokeWidth(DEF_LINE_WIDTH);
 
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setColor(textColor != null? textColor: DEF_TEXT_COLOR);
-        textPaint.setTextSize(textSize != null? textSize: DEF_TEXT_SIZE);
+        textPaint.setColor(textColor.setColor(DEF_TEXT_COLOR));
+        textPaint.setTextSize(DEF_TEXT_SIZE);
     }
 
     /**
