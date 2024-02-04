@@ -69,12 +69,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Autonomous OpenCV & April Tag")
+@Autonomous(name = "Autonomous with vision portal ")
 public class AutonomousCopyALan extends LinearOpMode {
     DcMotor RFMotor;
     DcMotor LFMotor;
     DcMotor RBMotor;
     DcMotor LBMotor;
+    DcMotor liftMotorL;
+    DcMotor liftMotorR;
+//    servo ClawR;
+//    servo ClawL;
+//    servo ClawR;
+//    servo Wrist;
+//    servo ArmR;
+//    servo ArmL;
+//    servo Drone;
+    public float speedMultiplier=0.5f;
+    public float speedLimiter =0.5f;
     DistanceSensor LeftSensor;
     DistanceSensor RightSensor;
     IMU imu;
