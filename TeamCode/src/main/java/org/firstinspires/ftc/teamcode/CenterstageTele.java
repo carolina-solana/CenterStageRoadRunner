@@ -183,7 +183,6 @@ public class CenterstageTele extends OpMode {
         if (gamepad2.y && !move) { //all the way down
             moveSlideToPosition(POSITION_Y);
         }
-
     }
 }
 
