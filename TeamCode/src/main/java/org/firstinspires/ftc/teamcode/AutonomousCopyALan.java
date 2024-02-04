@@ -937,22 +937,14 @@ Returns the absolute orientation of the sensor as a set three angles with indica
         aprilTag.setDecimation(2);
 
         // Create the vision portal by using a builder.
-        if (USE_WEBCAM) {
+
         visionPortal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
-                .addProcessor(aprilTag)
+                .addProcessors(aprilTag)
                 .addProcessor(redTeamPropOpenCv)
                 .addProcessor(blueTeamPropOpenCv)
                 .build();
-                setManualExposure(6, 250);  // Use low exposure time to reduce motion blur
-        } else {
-            visionPortal = new VisionPortal.Builder()
-                    .setCamera(BuiltinCameraDirection.BACK)
-                    .addProcessor(aprilTag)
-                    .addProcessor(redTeamPropOpenCv)
-                    .addProcessor(blueTeamPropOpenCv)
-                    .build();
-        }
+                setManualExposure(6, 250);
     }
 
     private void    setManualExposure(int exposureMS, int gain) {
