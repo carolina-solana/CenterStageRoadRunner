@@ -180,7 +180,7 @@ public class CenterstageTele extends OpMode {
         if (gamepad2.a && !move) { //all the way down
             moveSlideToPosition(POSITION_A);
         }
-        if (gamepad2.y && !move) { //all the way down
+        if (gamepad2.y && !move) { //up controlled
             moveSlideToPosition(POSITION_Y);
         }
     }
