@@ -53,7 +53,6 @@ public class AutonomousCopyALan extends LinearOpMode {
     DcMotor liftMotorR;
     Servo ClawR;
     Servo ClawL;
-    Servo ClawR;
     Servo Wrist;
     Servo ArmR;
     Servo ArmL;
