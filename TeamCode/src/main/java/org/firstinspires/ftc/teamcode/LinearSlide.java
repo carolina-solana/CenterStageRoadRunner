@@ -34,7 +34,7 @@ public class LinearSlide extends OpMode {
         liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftMotorR.setDirection(DcMotorSimple.Direction.REVERSE);
+
     }
     @Override
     public void loop() {

@@ -11,7 +11,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp
-public class TeleOpCode extends OpMode {
+public class TeleOpCodeOld extends OpMode {
     DcMotor RFMotor;
     DcMotor LFMotor;
     DcMotor RBMotor;
