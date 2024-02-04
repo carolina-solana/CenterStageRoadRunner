@@ -10,7 +10,7 @@ buildscript {
         agp_version1 = '8.2.0'
         agp_version2 = '8.2.0'
         agp_version3 = '8.2.0'
-        agp_version4 = '8.2.0'
+        agp_version4 = '8.2.2'
         agp_version5 = '8.2.0'
         agp_version6 ='8.2.0'
         agp_version7 ='8.2.0'
@@ -23,6 +23,10 @@ buildscript {
         // Note for FTC Teams: Do not modify this yourself.
         classpath "com.android.tools.build:gradle:$agp_version4"
     }
+}
+
+ext {
+    agp_version = agp_version
 }
 
 // This is now required because aapt2 has to be downloaded from the

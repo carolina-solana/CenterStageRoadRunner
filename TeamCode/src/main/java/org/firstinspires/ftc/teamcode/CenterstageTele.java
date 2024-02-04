@@ -13,18 +13,18 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp
 public class CenterstageTele extends OpMode {
-    DcMotor RFMotor;
-    DcMotor LFMotor;
-    DcMotor RBMotor;
-    DcMotor LBMotor;
-    DcMotor liftMotorL;
-    DcMotor liftMotorR;
-    Servo ClawR;
-    Servo ClawL;
-    Servo Wrist;
+//    DcMotor RFMotor;
+//    DcMotor LFMotor;
+//    DcMotor RBMotor;
+//    DcMotor LBMotor;
+//    DcMotor liftMotorL;
+//    DcMotor liftMotorR;
+//    Servo ClawR;
+//    Servo ClawL;
+//    Servo Wrist;
     Servo ArmR;
     Servo ArmL;
-    Servo Drone;
+//    Servo Drone;
     public float speedMultiplier = 0.5f;
     public float speedLimiter = 0.5f;
 
@@ -32,35 +32,35 @@ public class CenterstageTele extends OpMode {
 
     @Override
     public void init() {
-        RFMotor = hardwareMap.get(DcMotor.class, "RFMotor");
-        LFMotor = hardwareMap.get(DcMotor.class, "LFMotor");
-        RBMotor = hardwareMap.get(DcMotor.class, "RBMotor");
-        LBMotor = hardwareMap.get(DcMotor.class, "LBMotor");
-
-        RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        liftMotorL = hardwareMap.get(DcMotor.class, "liftMotorL");
-        liftMotorR = hardwareMap.get(DcMotor.class, "liftMotorR");
-        int positionL = liftMotorL.getCurrentPosition();
-        int positionR = liftMotorR.getCurrentPosition();
-
-        liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-        liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
-
-        liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        Drone = hardwareMap.get(Servo.class, "Drone");
-        Drone.setPosition(0);
-
-        Wrist = hardwareMap.get(Servo.class, "wrist");
-        Wrist.setPosition(0.34);
-
-        ClawR = hardwareMap.get(Servo.class, "ClawR");
-        ClawL = hardwareMap.get(Servo.class, "ClawL");
-        ClawR.setPosition(0.78);
-        ClawL.setPosition(0.018);
+//        RFMotor = hardwareMap.get(DcMotor.class, "RFMotor");
+//        LFMotor = hardwareMap.get(DcMotor.class, "LFMotor");
+//        RBMotor = hardwareMap.get(DcMotor.class, "RBMotor");
+//        LBMotor = hardwareMap.get(DcMotor.class, "LBMotor");
+//
+//        RFMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+//        RBMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+//
+//        liftMotorL = hardwareMap.get(DcMotor.class, "liftMotorL");
+//        liftMotorR = hardwareMap.get(DcMotor.class, "liftMotorR");
+//        int positionL = liftMotorL.getCurrentPosition();
+//        int positionR = liftMotorR.getCurrentPosition();
+//
+//        liftMotorL.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//        liftMotorR.setZeroPowerBehavior((DcMotor.ZeroPowerBehavior.BRAKE));
+//
+//        liftMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        liftMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//        Drone = hardwareMap.get(Servo.class, "Drone");
+//        Drone.setPosition(0);
+//
+//        Wrist = hardwareMap.get(Servo.class, "wrist");
+//        Wrist.setPosition(0.34);
+//
+//        ClawR = hardwareMap.get(Servo.class, "ClawR");
+//        ClawL = hardwareMap.get(Servo.class, "ClawL");
+//        ClawR.setPosition(0.78);
+//        ClawL.setPosition(0.018);
 
         ArmL = hardwareMap.get(Servo.class, "ArmL");
         ArmR = hardwareMap.get(Servo.class, "ArmR");
@@ -107,34 +107,34 @@ public class CenterstageTele extends OpMode {
         double frontRightPower = (rotY - rotX - rx) / denominator;
         double backRightPower = (rotY + rotX - rx) / denominator;
 
-        LFMotor.setPower(0.75*frontLeftPower);
-        LBMotor.setPower(0.75*backLeftPower);
-        RFMotor.setPower(0.75*frontRightPower);
-        RBMotor.setPower(0.75*backRightPower);
+//        LFMotor.setPower(0.75*frontLeftPower);
+//        LBMotor.setPower(0.75*backLeftPower);
+//        RFMotor.setPower(0.75*frontRightPower);
+//        RBMotor.setPower(0.75*backRightPower);
     }
 
     public void liftArmHigh() {
         double y = -gamepad1.left_stick_y;
-        liftMotorL.setPower(speedLimiter * y);
-        liftMotorR.setPower(speedLimiter * y);
+//        liftMotorL.setPower(speedLimiter * y);
+//        liftMotorR.setPower(speedLimiter * y);
     }
 
     @Override
     public void loop() {
         FieldCentricDriveTrain();
         liftArmHigh();
-        if (gamepad1.right_trigger > 0.3) {
-            ClawR.setPosition(0.78);
-        }
-        if (gamepad1.left_trigger > 0.3) {
-            ClawL.setPosition(0.02);
-        }
-        if (gamepad1.left_bumper && !move) {
-            ClawL.setPosition(0);
-        }
-        if (gamepad1.right_bumper && !move) {
-            ClawR.setPosition(0.5);
-        }
+//        if (gamepad1.right_trigger > 0.3) {
+//            ClawR.setPosition(0.78);
+//        }
+//        if (gamepad1.left_trigger > 0.3) {
+//            ClawL.setPosition(0.02);
+//        }
+//        if (gamepad1.left_bumper && !move) {
+//            ClawL.setPosition(0);
+//        }
+//        if (gamepad1.right_bumper && !move) {
+//            ClawR.setPosition(0.5);
+//        }
         if (gamepad1.a && !move) {
             ArmR.setPosition(0);
             ArmL.setPosition(0);
@@ -143,18 +143,18 @@ public class CenterstageTele extends OpMode {
             ArmL.setPosition(0.4);
             ArmR.setPosition(0.4);
         }
-        if (gamepad2.b && !move) {
-            Wrist.setPosition(0.545);
-        }
-        if (gamepad2.x && !move) {
-            Wrist.setPosition(0.318);
-        }
-        if (gamepad2.y && !move) {
-            Drone.setPosition(1);
-        }
-        if (gamepad1.left_trigger > 0.3) {
-            ClawL.setPosition(0.5);
-        }
+//        if (gamepad2.b && !move) {
+//            Wrist.setPosition(0.545);
+//        }
+//        if (gamepad2.x && !move) {
+//            Wrist.setPosition(0.318);
+//        }
+//        if (gamepad2.y && !move) {
+//            Drone.setPosition(1);
+//        }
+//        if (gamepad1.left_trigger > 0.3) {
+//            ClawL.setPosition(0.5);
+//        }
 
     }
 }
