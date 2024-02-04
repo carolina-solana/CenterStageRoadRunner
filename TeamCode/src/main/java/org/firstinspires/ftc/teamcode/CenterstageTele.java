@@ -160,11 +160,11 @@ public class CenterstageTele extends OpMode {
         if (gamepad1.right_bumper && !move) { //open
             ClawR.setPosition(0.5);
         }
-        if (gamepad2.dpad_down && !move) { //up
+        if (gamepad2.dpad_up && !move) { //up
             ArmR.setPosition(0);
             ArmL.setPosition(0);
         }
-        if (gamepad2.dpad_up && !move) { //down
+        if (gamepad2.dpad_down && !move) { //down
             ArmL.setPosition(0.4);
             ArmR.setPosition(0.4);
         }
