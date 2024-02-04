@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name = "Autonomous with vision portal ")
+@Autonomous(name = "Autonomous with Vision Portal")
 public class AutonomousCopyALan extends LinearOpMode {
     DcMotor RFMotor;
     DcMotor LFMotor;
