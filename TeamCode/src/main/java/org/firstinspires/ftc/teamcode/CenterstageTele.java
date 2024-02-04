@@ -173,6 +173,7 @@ public class CenterstageTele extends OpMode {
         }
         if (gamepad2.x && !move) { //down
             Wrist.setPosition(0.318);
+
         }
         if (gamepad2.left_bumper && !move) { //shoot
             Drone.setPosition(1);
