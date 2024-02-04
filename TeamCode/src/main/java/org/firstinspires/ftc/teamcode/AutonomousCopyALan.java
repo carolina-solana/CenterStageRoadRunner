@@ -19,6 +19,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.util.RobotLog;
 
@@ -75,6 +76,12 @@ public class AutonomousCopyALan extends LinearOpMode {
     DcMotor LFMotor;
     DcMotor RBMotor;
     DcMotor LBMotor;
+    Servo ClawR;
+    Servo ClawL;
+    Servo Wrist;
+    Servo ArmR;
+    Servo ArmL;
+
     DistanceSensor LeftSensor;
     DistanceSensor RightSensor;
     IMU imu;
@@ -168,6 +175,23 @@ public class AutonomousCopyALan extends LinearOpMode {
         LFMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RBMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LBMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //slides
+        //left slides expansion hub port
+        //right slides expansion hub port
+
+        //drone expansion hub port 5
+
+        Wrist = hardwareMap.get(Servo.class, "wrist");//control hub port
+        Wrist.setPosition(0.34);
+
+        ClawR = hardwareMap.get(Servo.class, "ClawR");//control hub port
+        ClawL = hardwareMap.get(Servo.class, "ClawL");//control hub port
+        ClawR.setPosition(0.78);
+        ClawL.setPosition(0.018);
+
+        ArmL = hardwareMap.get(Servo.class, "ArmL");//control hub port
+        ArmR = hardwareMap.get(Servo.class, "ArmR");//control hub port
 
         initOpenCV();
         FtcDashboard dashboard = FtcDashboard.getInstance();
